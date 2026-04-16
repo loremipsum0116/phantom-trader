@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,3 L0,6 Z" fill="#4b5563"/>
+    </marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #111827; }
+      .title { font-size: 30px; font-weight: bold; }
+      .subtitle { font-size: 16px; fill: #4b5563; }
+      .box-title { font-size: 22px; font-weight: bold; }
+      .box-text { font-size: 15px; fill: #374151; }
+      .small { font-size: 13px; fill: #4b5563; }
+      .group-title { font-size: 18px; font-weight: bold; fill: #374151; }
+      .arrow { stroke: #4b5563; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .arrow-dashed { stroke: #6b7280; stroke-width: 2.5; stroke-dasharray: 8 8; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#f8fafc"/>
+  <text x="800" y="55" text-anchor="middle" class="title">Phantom Trader – Simplified Architecture</text>
+  <text x="800" y="85" text-anchor="middle" class="subtitle">Fewer arrows, larger components, concise labels</text>
+
+  <!-- External sources -->
+  <text x="115" y="155" class="group-title">External</text>
+  <rect x="60" y="180" rx="14" ry="14" width="230" height="95" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text x="175" y="218" text-anchor="middle" class="box-title">Binance WebSocket</text>
+  <text x="175" y="245" text-anchor="middle" class="box-text">1m mark / kline stream</text>
+
+  <rect x="60" y="315" rx="14" ry="14" width="230" height="95" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text x="175" y="353" text-anchor="middle" class="box-title">Binance REST</text>
+  <text x="175" y="380" text-anchor="middle" class="box-text">history, exchange info</text>
+
+  <!-- Data layer -->
+  <text x="430" y="155" class="group-title">Data Layer</text>
+  <rect x="360" y="180" rx="14" ry="14" width="300" height="110" fill="#e0f2fe" stroke="#38bdf8" stroke-width="2"/>
+  <text x="510" y="220" text-anchor="middle" class="box-title">FeedManager</text>
+  <text x="510" y="248" text-anchor="middle" class="box-text">cache and dispatch</text>
+  <text x="510" y="270" text-anchor="middle" class="box-text">OHLCV + mark prices</text>
+
+  <rect x="360" y="320" rx="14" ry="14" width="300" height="110" fill="#e0f2fe" stroke="#38bdf8" stroke-width="2"/>
+  <text x="510" y="360" text-anchor="middle" class="box-title">CandleBuilder</text>
+  <text x="510" y="388" text-anchor="middle" class="box-text">aggregate 1m to 1h / 4h</text>
+  <text x="510" y="410" text-anchor="middle" class="box-text">emit bar close events</text>
+
+  <!-- Strategy layer -->
+  <text x="850" y="155" class="group-title">Strategy Layer</text>
+  <rect x="760" y="180" rx="14" ry="14" width="330" height="110" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="925" y="220" text-anchor="middle" class="box-title">IndicatorHub</text>
+  <text x="925" y="248" text-anchor="middle" class="box-text">EMA, RSI, ATR, Bollinger, MACD</text>
+  <text x="925" y="270" text-anchor="middle" class="box-text">1h / 4h frames</text>
+
+  <rect x="760" y="320" rx="14" ry="14" width="330" height="130" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="925" y="360" text-anchor="middle" class="box-title">10 Strategies</text>
+  <text x="925" y="388" text-anchor="middle" class="box-text">trend, mean reversion, breakout</text>
+  <text x="925" y="410" text-anchor="middle" class="box-text">VWAP, funding, multi-coin, composite</text>
+  <text x="925" y="432" text-anchor="middle" class="box-text">generate entry / exit intents</text>
+
+  <!-- Execution -->
+  <text x="1205" y="155" class="group-title">Execution</text>
+  <rect x="1140" y="220" rx="14" ry="14" width="320" height="165" fill="#fee2e2" stroke="#f87171" stroke-width="2"/>
+  <text x="1300" y="260" text-anchor="middle" class="box-title">Execution / Simulator</text>
+  <text x="1300" y="288" text-anchor="middle" class="box-text">next-bar fills, slippage, fees</text>
+  <text x="1300" y="310" text-anchor="middle" class="box-text">liquidation and margin checks</text>
+  <text x="1300" y="332" text-anchor="middle" class="box-text">funding fee framework</text>
+  <text x="1300" y="354" text-anchor="middle" class="box-text">positions and portfolio updates</text>
+
+  <!-- Persistence -->
+  <text x="430" y="545" class="group-title">Persistence &amp; Monitoring</text>
+  <rect x="360" y="585" rx="14" ry="14" width="300" height="120" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="510" y="625" text-anchor="middle" class="box-title">StateManager</text>
+  <text x="510" y="653" text-anchor="middle" class="box-text">save positions, trades</text>
+  <text x="510" y="675" text-anchor="middle" class="box-text">equity and strategy metrics</text>
+
+  <rect x="360" y="735" rx="14" ry="14" width="300" height="100" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="510" y="775" text-anchor="middle" class="box-title">SQLite (WAL)</text>
+  <text x="510" y="803" text-anchor="middle" class="box-text">persistent storage</text>
+
+  <!-- Notifications -->
+  <rect x="760" y="600" rx="14" ry="14" width="330" height="105" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="925" y="640" text-anchor="middle" class="box-title">Telegram Bot</text>
+  <text x="925" y="668" text-anchor="middle" class="box-text">alerts and status commands</text>
+
+  <!-- Dashboard -->
+  <text x="1205" y="545" class="group-title">Dashboard</text>
+  <rect x="1140" y="585" rx="14" ry="14" width="320" height="120" fill="#f3e8ff" stroke="#c084fc" stroke-width="2"/>
+  <text x="1300" y="625" text-anchor="middle" class="box-title">FastAPI</text>
+  <text x="1300" y="653" text-anchor="middle" class="box-text">reads SQLite, serves JSON</text>
+  <text x="1300" y="675" text-anchor="middle" class="box-text">equity / trades / status</text>
+
+  <rect x="1140" y="735" rx="14" ry="14" width="320" height="100" fill="#f3e8ff" stroke="#c084fc" stroke-width="2"/>
+  <text x="1300" y="775" text-anchor="middle" class="box-title">Web UI</text>
+  <text x="1300" y="803" text-anchor="middle" class="box-text">charts, positions, market view</text>
+
+  <!-- Orchestrator -->
+  <rect x="560" y="885" rx="16" ry="16" width="480" height="72" fill="#e5e7eb" stroke="#9ca3af" stroke-width="2"/>
+  <text x="800" y="925" text-anchor="middle" class="box-title">PhantomTrader (main.py)</text>
+  <text x="800" y="948" text-anchor="middle" class="small">startup, task orchestration, shutdown</text>
+
+  <!-- Arrows: keep only a few essential ones -->
+  <path d="M290 228 L360 228" class="arrow"/>
+  <path d="M290 363 L360 363" class="arrow"/>
+  <path d="M510 290 L510 320" class="arrow"/>
+  <path d="M660 375 L760 375" class="arrow"/>
+  <path d="M1090 385 L1140 385" class="arrow"/>
+
+  <path d="M1300 385 L1300 470 L510 470 L510 585" class="arrow"/>
+  <path d="M510 705 L510 735" class="arrow"/>
+
+  <path d="M660 785 L1140 785" class="arrow"/>
+  <path d="M1300 705 L1300 735" class="arrow"/>
+
+  <path d="M660 645 L760 645" class="arrow"/>
+
+  <!-- dashed orchestration lines -->
+  <path d="M800 885 L800 760" class="arrow-dashed"/>
+  <text x="820" y="840" class="small">orchestrates</text>
+
+  <!-- Small note -->
+  <text x="80" y="955" class="small">Note: funding refresh, recovery logic, and some risk checks are omitted for clarity.</text>
+</svg>

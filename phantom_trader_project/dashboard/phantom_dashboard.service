@@ -1,0 +1,17 @@
+[Unit]
+Description=Phantom Trader Dashboard
+After=network.target phantom_trader.service
+
+[Service]
+Type=simple
+User=phantom
+WorkingDirectory=/opt/phantom_trader/dashboard
+EnvironmentFile=/opt/phantom_trader/.env
+Environment="PHANTOM_DB_PATH=/opt/phantom_trader/phantom_trader.db"
+Environment="DASHBOARD_PORT=8080"
+ExecStart=/opt/phantom_trader/venv/bin/python api.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
